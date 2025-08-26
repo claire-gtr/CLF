@@ -20,8 +20,8 @@
         /* Background images and animations */
         .background-beige {
             background-image: url('./assets/clf_background_beige.jpg');
-            animation: fadeOutBeige 6s ease-in-out forwards;
-            animation-delay: 3s;
+            animation: fadeOutBeige 3s ease-in-out forwards;
+            animation-delay: 1.5s;
         }
         
         .background-black {
@@ -30,8 +30,8 @@
         
         /* Logo animation */
         .logo-animation {
-            animation: fadeInLogo 2s ease-in-out forwards;
-            animation-delay: 1.5s;
+            animation: fadeInLogo 1.2s ease-in-out forwards;
+            animation-delay: 0.8s;
         }
         
         /* Custom width for logo */
@@ -79,6 +79,11 @@
             font-size: 8px;
         }
         
+        /* Custom beige color */
+        .text-beige {
+            color: #D4C4A8;
+        }
+        
         .text-white {
             color: #ffffff;
         }
@@ -87,7 +92,7 @@
         .contact-fade-in {
             opacity: 0;
             animation: fadeInContact 1s ease-in-out forwards;
-            animation-delay: 8s; /* Starts at 8s, finishes at 9s when dark bg is fully visible */
+            animation-delay: 3.5s; /* Starts at 3.5s, finishes at 4.5s when dark bg is fully visible */
         }
         
         @keyframes fadeInContact {
@@ -156,14 +161,14 @@
             contactInfoMobile.offsetHeight;
             
             // Re-apply animations
-            beigeBackground.style.animation = 'fadeOutBeige 6s ease-in-out forwards';
-            beigeBackground.style.animationDelay = '3s';
+            beigeBackground.style.animation = 'fadeOutBeige 3s ease-in-out forwards';
+            beigeBackground.style.animationDelay = '1.5s';
             logoContainer.classList.add('logo-animation');
             contactInfo.classList.add('contact-fade-in');
             contactInfoMobile.classList.add('contact-fade-in');
         }
         
-        // Animation completes at 9s (contact info fully visible when dark bg is revealed)
+        // Animation completes at 4.5s (contact info fully visible when dark bg is revealed)
     </script>
 </body>
 </html>
