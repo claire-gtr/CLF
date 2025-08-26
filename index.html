@@ -3,176 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind + Lottie Test</title>
+    <title>CLF - Animation</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Lottie Web -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    
+    <!-- Google Fonts - Arsenal -->
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Keyframe animations that can't be done with Tailwind */
+        
+        /* Background images and animations */
+        .background-beige {
+            background-image: url('./assets/clf_background_beige.jpg');
+            animation: fadeOutBeige 6s ease-in-out forwards;
+            animation-delay: 3s;
+        }
+        
+        .background-black {
+            background-image: url('./assets/clf_background_black.jpg');
+        }
+        
+        /* Logo animation */
+        .logo-animation {
+            animation: fadeInLogo 2s ease-in-out forwards;
+            animation-delay: 1.5s;
+        }
+        
+        /* Custom width for logo */
+        .w-80vw {
+            width: 80vw;
+        }
+        
+        /* Animation keyframes */
+        @keyframes fadeInLogo {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        @keyframes fadeOutBeige {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        /* Custom font family for Arsenal */
+        .font-arsenal {
+            font-family: 'Arsenal', sans-serif;
+        }
+        
+        /* Custom letter spacing for contact text */
+        .letter-spacing-wide {
+            letter-spacing: 2px;
+        }
+        
+        /* Custom font sizes for contact text */
+        .text-9px {
+            font-size: 9px;
+        }
+        
+        .text-8px {
+            font-size: 8px;
+        }
+        
+        /* Custom beige color */
+        .text-beige {
+            color: #D4C4A8;
+        }
+        
+        /* Contact info animation - appears when dark bg is revealed */
+        .contact-fade-in {
+            opacity: 0;
+            animation: fadeInContact 1s ease-in-out forwards;
+            animation-delay: 8s; /* Starts at 8s, finishes at 9s when dark bg is fully visible */
+        }
+        
+        @keyframes fadeInContact {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+    </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <!-- Header with Tailwind styling -->
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
-                🎨 Tailwind + Lottie Test
-            </h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Testing Tailwind CSS styling and Lottie animations integration
-            </p>
-        </header>
-
-        <!-- Tailwind CSS Test Section -->
-        <section class="mb-12">
-            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
-                    <span class="w-8 h-8 bg-cyan-500 rounded-full mr-3 flex items-center justify-center text-white font-bold">✓</span>
-                    Tailwind CSS Test
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-gradient-to-r from-purple-400 to-pink-400 p-4 rounded-lg text-white text-center">
-                        <p class="font-semibold">Purple to Pink</p>
-                    </div>
-                    <div class="bg-gradient-to-r from-green-400 to-blue-400 p-4 rounded-lg text-white text-center">
-                        <p class="font-semibold">Green to Blue</p>
-                    </div>
-                    <div class="bg-gradient-to-r from-yellow-400 to-red-400 p-4 rounded-lg text-white text-center">
-                        <p class="font-semibold">Yellow to Red</p>
-                    </div>
-                </div>
-                
-                <!-- Interactive button -->
-                <div class="mt-6 text-center">
-                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transform hover:scale-105 transition duration-200 shadow-lg">
-                        Hover me! 🚀
-                    </button>
-                </div>
+<body class="m-0 p-0">
+    <!-- CLF Animation Container -->
+    <div class="relative w-screen h-screen overflow-hidden">
+        <!-- Background layers -->
+        <div class="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat background-black z-10"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat background-beige z-20" id="beigeBackground"></div>
+        
+        <!-- Logo -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 opacity-0 logo-animation" id="logoContainer">
+            <img src="./assets/clf_logo_white.png" alt="CLF Logo" class="max-w-md max-h-72 w-80vw h-auto">
+        </div>
+        
+        <!-- Desktop Contact Information -->
+        <div id="contactInfo" class="hidden md:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex-row justify-center items-center gap-8 contact-fade-in">
+            <p class="font-arsenal text-9px text-beige letter-spacing-wide leading-relaxed m-0 whitespace-nowrap">59 rue Montmartre 75002 Paris</p>
+            <a href="mailto:contact@corentinleflohic.com" class="font-arsenal text-9px text-beige letter-spacing-wide leading-relaxed m-0 whitespace-nowrap hover:opacity-80 transition-opacity duration-200">contact@corentinleflohic.com</a>
+        </div>
+        
+        <!-- Mobile Contact Information -->
+        <div id="contactInfoMobile" class="md:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex flex-col justify-center items-center text-center contact-fade-in">
+            <a href="mailto:contact@corentinleflohic.com" class="font-arsenal text-8px text-beige letter-spacing-wide leading-relaxed m-0 whitespace-nowrap hover:opacity-80 transition-opacity duration-200">contact@corentinleflohic.com</a>
+            <div class="mt-4">
+                <p class="font-arsenal text-8px text-beige letter-spacing-wide leading-relaxed m-0 whitespace-nowrap">59 rue Montmartre</p>
+                <p class="font-arsenal text-8px text-beige letter-spacing-wide leading-relaxed m-0 whitespace-nowrap">75002 Paris</p>
             </div>
-        </section>
-
-        <!-- Lottie Animation Test Section -->
-        <section class="mb-12">
-            <div class="bg-white rounded-xl shadow-lg p-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
-                    <span class="w-8 h-8 bg-green-500 rounded-full mr-3 flex items-center justify-center text-white font-bold">▶</span>
-                    Lottie Animation Test
-                </h2>
-                
-                <!-- Lottie animation container -->
-                <div class="flex justify-center mb-4">
-                    <div id="lottie-animation" class="w-64 h-64 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
-                        <div class="text-center p-4">
-                            <div class="mb-2">🎬</div>
-                            <p class="text-gray-500 text-sm">Lottie Ready!</p>
-                            <p class="text-gray-400 text-xs">Add your .json file</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Animation controls -->
-                <div class="text-center space-x-4">
-                    <button id="play-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-200">
-                        Play
-                    </button>
-                    <button id="pause-btn" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition duration-200">
-                        Pause
-                    </button>
-                    <button id="stop-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-200">
-                        Stop
-                    </button>
-                </div>
-                
-                <div class="mt-4 text-center">
-                    <p class="text-sm text-gray-600">
-                        Note: Using a simple loading animation. Replace the animation URL with your own Lottie file.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Status Section -->
-        <section>
-            <div class="bg-gray-800 text-white rounded-xl shadow-lg p-8 text-center">
-                <h2 class="text-2xl font-semibold mb-4">🎯 Integration Status</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-green-600 p-4 rounded-lg">
-                        <h3 class="font-bold text-lg">Tailwind CSS</h3>
-                        <p class="text-green-100">✅ Loaded and working</p>
-                    </div>
-                    <div class="bg-blue-600 p-4 rounded-lg">
-                        <h3 class="font-bold text-lg">Lottie Web</h3>
-                        <p class="text-blue-100" id="lottie-status">⏳ Loading...</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </div>
+    
 
     <script>
-        // Test that both libraries are loaded
-        console.log('✅ Tailwind CSS loaded via CDN');
+        // Animation timeline
+        function playAnimation() {
+            // Reset and replay animation
+            const beigeBackground = document.getElementById('beigeBackground');
+            const logoContainer = document.getElementById('logoContainer');
+            const contactInfo = document.getElementById('contactInfo');
+            const contactInfoMobile = document.getElementById('contactInfoMobile');
+            
+            // Reset elements
+            beigeBackground.style.opacity = '1';
+            logoContainer.style.opacity = '0';
+            
+            // Remove and re-add animations
+            beigeBackground.style.animation = 'none';
+            logoContainer.classList.remove('logo-animation');
+            contactInfo.classList.remove('contact-fade-in');
+            contactInfoMobile.classList.remove('contact-fade-in');
+            
+            // Force reflow
+            beigeBackground.offsetHeight;
+            logoContainer.offsetHeight;
+            contactInfo.offsetHeight;
+            contactInfoMobile.offsetHeight;
+            
+            // Re-apply animations
+            beigeBackground.style.animation = 'fadeOutBeige 6s ease-in-out forwards';
+            beigeBackground.style.animationDelay = '3s';
+            logoContainer.classList.add('logo-animation');
+            contactInfo.classList.add('contact-fade-in');
+            contactInfoMobile.classList.add('contact-fade-in');
+        }
         
-        // Check if Lottie is available
-        if (typeof lottie !== 'undefined') {
-            console.log('✅ Lottie Web library loaded via CDN');
-            document.getElementById('lottie-status').innerHTML = '✅ Loaded and working';
-            document.getElementById('lottie-status').parentElement.classList.remove('bg-blue-600');
-            document.getElementById('lottie-status').parentElement.classList.add('bg-green-600');
-            
-            // Show instructions for using your own animation
-            document.getElementById('lottie-animation').innerHTML = `
-                <div class="text-center p-4">
-                    <div class="text-4xl mb-2">🎬</div>
-                    <p class="text-green-600 font-semibold text-sm mb-1">Lottie Ready!</p>
-                    <p class="text-gray-500 text-xs mb-3">Library loaded successfully</p>
-                    <div class="text-xs text-gray-400 leading-relaxed">
-                        <p class="mb-1">To add animation:</p>
-                        <p>1. Download .json from LottieFiles</p>
-                        <p>2. Replace the animation path</p>
-                        <p>3. Uncomment the code below</p>
-                    </div>
-                </div>
-            `;
-        } else {
-            console.error('❌ Lottie Web library failed to load');
-            document.getElementById('lottie-status').innerHTML = '❌ Failed to load';
-            document.getElementById('lottie-status').parentElement.classList.remove('bg-blue-600');
-            document.getElementById('lottie-status').parentElement.classList.add('bg-red-600');
-        }
-
-        // Example code for when you have your own Lottie animation file
-        // Uncomment and modify the path when you have a .json file
-        /*
-        let animation;
-        const animationData = {
-            container: document.getElementById('lottie-animation'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: './your-animation.json' // Replace with your animation path
-        };
-
-        try {
-            animation = lottie.loadAnimation(animationData);
-            
-            // Control buttons
-            document.getElementById('play-btn').addEventListener('click', () => {
-                animation.play();
-            });
-
-            document.getElementById('pause-btn').addEventListener('click', () => {
-                animation.pause();
-            });
-
-            document.getElementById('stop-btn').addEventListener('click', () => {
-                animation.stop();
-            });
-
-        } catch (error) {
-            console.error('Animation failed to load:', error);
-        }
-        */
+        // Animation completes at 9s (contact info fully visible when dark bg is revealed)
     </script>
 </body>
 </html>
