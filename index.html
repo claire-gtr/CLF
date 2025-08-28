@@ -20,12 +20,20 @@
         /* Background images and animations */
         .background-beige {
             background-image: url('./assets/clf_background_beige.jpg');
+            background-position: top center;
             animation: fadeOutBeige 3s ease-in-out forwards;
             animation-delay: 1.5s;
         }
         
         .background-black {
             background-image: url('./assets/clf_background_black.jpg');
+            background-position: bottom center;
+        }
+        
+        @media (min-width: 768px) {
+            .background-black {
+                background-position: top center;
+            }
         }
         
         /* Logo animation */
@@ -34,9 +42,16 @@
             animation-delay: 0.8s;
         }
         
-        /* Custom width for logo */
-        .w-80vw {
-            width: 80vw;
+        /* Custom logo sizing */
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+        
+        @media (min-width: 768px) {
+            .logo {
+                width: 100px;
+            }
         }
         
         /* Animation keyframes */
@@ -110,16 +125,16 @@
     <!-- CLF Animation Container -->
     <div class="relative w-screen h-screen overflow-hidden">
         <!-- Background layers -->
-        <div class="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat background-black z-10"></div>
-        <div class="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat background-beige z-20" id="beigeBackground"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat background-black z-10"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat background-beige z-20" id="beigeBackground"></div>
         
         <!-- Logo -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 opacity-0 logo-animation" id="logoContainer">
-            <img src="./assets/clf_logo_white.png" alt="CLF Logo" class="max-w-md max-h-72 w-80vw h-auto">
+            <img src="./assets/clf_logo_white.png" alt="CLF Logo" class="logo">
         </div>
         
         <!-- Desktop Contact Information -->
-        <div id="contactInfo" class="hidden md:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex-row justify-center items-center gap-8 contact-fade-in">
+        <div id="contactInfo" class="hidden md:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex-row justify-center items-center gap-24 contact-fade-in">
             <p class="font-arsenal text-9px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap">59 rue Montmartre 75002 Paris</p>
             <a href="mailto:contact@corentinleflohic.com" class="font-arsenal text-9px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap hover:opacity-80 transition-opacity duration-200">contact@corentinleflohic.com</a>
         </div>
