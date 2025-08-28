@@ -11,8 +11,8 @@
     <!-- Lottie Web -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     
-    <!-- Google Fonts - Arsenal -->
-    <link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Amiri -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     
     <style>
         /* Keyframe animations that can't be done with Tailwind */
@@ -36,46 +36,24 @@
             }
         }
         
-        /* Logo container - ensure it doesn't constrain the image */
-        #logoContainer {
-            width: auto !important;
-            height: auto !important;
-            max-width: none !important;
-            max-height: none !important;
-            min-width: auto !important;
-            min-height: auto !important;
-            box-sizing: content-box !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            border: none !important;
-            background: none !important;
-            display: block !important;
-        }
-        
         /* Logo animation */
         .logo-animation {
             animation: fadeInLogo 1.2s ease-in-out forwards;
             animation-delay: 0.8s;
         }
         
-        /* Logo image sizing - mobile: 100px, desktop: 120px */
-        #logoContainer img.logo {
-            width: 100px !important;
-            height: auto !important;
-            max-width: none !important;
-            max-height: none !important;
-            min-width: auto !important;
-            min-height: auto !important;
-            object-fit: contain !important;
-            aspect-ratio: auto !important;
-            display: block !important;
+        /* Custom logo sizing */
+        .w-100 {
+            width: 100px;
         }
         
-        @media (min-width: 768px) {
-            #logoContainer img.logo {
-                width: 120px !important;
-                height: auto !important;
-            }
+        .w-120 {
+            width: 120px;
+        }
+        
+        /* Amiri font */
+        .font-amiri {
+            font-family: 'Amiri', serif;
         }
         
         /* Prevent scrolling on all screen sizes */
@@ -160,43 +138,28 @@
         
         <!-- Logo -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 opacity-0 logo-animation" id="logoContainer">
-            <img src="./assets/clf_logo_white.png" alt="CLF Logo" class="logo" style="width: 100px !important; height: auto !important; max-width: none !important; max-height: none !important; object-fit: contain !important;" data-desktop-width="120">
+            <img src="./assets/clf_logo_white.png" alt="CLF Logo" class="w-100 md:w-120 h-auto">
         </div>
         
         <!-- Desktop Contact Information -->
         <div id="contactInfo" class="hidden md:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex-row justify-center items-center gap-24 contact-fade-in">
-            <p class="font-arsenal text-9px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap">59 rue Montmartre 75002 Paris</p>
-            <a href="mailto:contact@corentinleflohic.com" class="font-arsenal text-9px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap hover:opacity-80 transition-opacity duration-200">contact@corentinleflohic.com</a>
+            <p class="font-amiri text-9px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap">59 rue Montmartre 75002 Paris</p>
+            <a href="mailto:contact@corentinleflohic.com" class="font-amiri text-9px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap hover:opacity-80 transition-opacity duration-200">contact@corentinleflohic.com</a>
         </div>
         
         <!-- Mobile Contact Information -->
         <div id="contactInfoMobile" class="md:hidden absolute bottom-16 left-1/2 transform -translate-x-1/2 z-40 flex flex-col justify-center items-center text-center contact-fade-in">
-            <a href="mailto:contact@corentinleflohic.com" class="font-arsenal text-8px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap hover:opacity-80 transition-opacity duration-200">contact@corentinleflohic.com</a>
+            <a href="mailto:contact@corentinleflohic.com" class="font-amiri text-8px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap hover:opacity-80 transition-opacity duration-200">contact@corentinleflohic.com</a>
             <div class="mt-4">
-                <p class="font-arsenal text-8px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap">59 rue Montmartre</p>
-                <p class="font-arsenal text-8px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap">75002 Paris</p>
+                <p class="font-amiri text-8px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap">59 rue Montmartre</p>
+                <p class="font-amiri text-8px text-white letter-spacing-wide leading-relaxed m-0 whitespace-nowrap">75002 Paris</p>
             </div>
         </div>
     </div>
     
 
     <script>
-        // Handle responsive logo sizing with JavaScript (since inline styles don't support media queries)
-        function updateLogoSize() {
-            const logoImg = document.querySelector('#logoContainer img.logo');
-            if (logoImg) {
-                if (window.innerWidth >= 768) {
-                    logoImg.style.width = '120px';
-                } else {
-                    logoImg.style.width = '100px';
-                }
-                logoImg.style.height = 'auto';
-            }
-        }
-        
-        // Update logo size on load and resize
-        window.addEventListener('load', updateLogoSize);
-        window.addEventListener('resize', updateLogoSize);
+
         
         // Animation timeline
         function playAnimation() {
@@ -209,9 +172,6 @@
             // Reset elements
             beigeBackground.style.opacity = '1';
             logoContainer.style.opacity = '0';
-            
-            // Ensure logo size is correct
-            updateLogoSize();
             
             // Remove and re-add animations
             beigeBackground.style.animation = 'none';
