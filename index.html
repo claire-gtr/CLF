@@ -43,13 +43,16 @@
             animation-delay: 0.8s;
         }
         
-        /* Custom logo sizing */
-        .w-120 {
+        /* Custom logo sizing - responsive */
+        .logo-responsive {
             width: 120px;
+            height: auto;
         }
         
-        .w-150 {
-            width: 150px;
+        @media (min-width: 768px) {
+            .logo-responsive {
+                width: 170px;
+            }
         }
         
         /* Amiri font */
@@ -144,7 +147,7 @@
         
         <!-- Logo -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 opacity-0 logo-animation" id="logoContainer">
-            <img src="./assets/clf_logo_white.png" alt="CLF Logo" class="w-120 md:w-150 h-auto">
+            <img src="./assets/clf_logo_white.png" alt="CLF Logo" class="logo-responsive">
         </div>
         
         <!-- Desktop Contact Information -->
